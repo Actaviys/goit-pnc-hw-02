@@ -22,6 +22,7 @@ def readerTextFile(file_path):
         return None
     except Exception:
         return None
+#
 
 
 
@@ -113,77 +114,46 @@ import TableCipher
 secret_key_t = "MATRIX"
 secret_key_tv = "CRYPTO"
 
-def funcCipherTable():
+def commandFuncEncryptTable_cipher():
     """ 
-    Функція обробки режимів, для табличного шифрування.
+    Функція обробки команд, для звичайного табличного шифрування, 
+    та з допомогою шифру Віженера.
     """
-    encrypt_text_tabl_buff = ""
-    text_from_file = readerTextFile("Original_Text.txt")
-    if text_from_file == None:
-        return print("Невірний шлях до файлу або файл пошкоджено!!!")
-    else:
-        while(True):
-            regimeCipTb = input("Оберіть режим: \
-            \n`1` - Шифрування \n`2` - Дешифрування \n`b` - Повернутись назад \n-> ")
-            if regimeCipTb == "b" or regimeCipTb == "B": return
-            
-            elif regimeCipTb == "1":
-                encrypt_text_tabl_buff = TableCipher.matrix_encrypt(text_from_file, secret_key_t)
-                print(encrypt_text_tabl_buff)
-            
-            elif regimeCipTb == "2":
-                decrypt_text_tabl = TableCipher.matrix_decrypt(encrypt_text_tabl_buff, secret_key_t)
-                print(decrypt_text_tabl)
-
-
-def funcCipherTable_and_CipherVigenere():
-    """ 
-    Функція обробки режимів, для табличного шифрування з шифром Віженера.
-    """
+    encrypted_text_table_buff = ""
     encryptVigenere_text_buff = ""
     encryptTable_text_buff = ""
+    
     text_from_file = readerTextFile("Original_Text.txt")
     if text_from_file == None:
         return print("Невірний шлях до файлу або файл пошкоджено!!!")
     else:
         while(True):
-            regimeCipTV = input("Оберіть режим: \
-            \n`1` - Шифрування \n`2` - Дешифрування \n`b` - Повернутись назад \n-> ")
-            if regimeCipTV == "b" or regimeCipTV == "B": return
+            regimeEncr = input("Оберіть тип табличного шифру: \
+                \n`1` - Табличне шифрування \n`2` - Табличне дешифрування\
+                \n`3` - Шифр Віженера з табличним шифруванням \n`4` - Дешифрування Віженера та табличного шифрів \
+                \n`b` - Повернутись назад \n-> ")
+            if regimeEncr == "b" or regimeEncr == "B": break
             
-            elif regimeCipTV == "1":
+            elif regimeEncr == "1":
+                encrypted_text_table_buff = TableCipher.matrix_encrypt(text_from_file, secret_key_t)
+                print(encrypted_text_table_buff)
+            
+            elif regimeEncr == "2":
+                decrypt_text_tabl = TableCipher.matrix_decrypt(encrypted_text_table_buff, secret_key_t)
+                print(decrypt_text_tabl)
+                
+            elif regimeEncr == "3":
                 encryptVigenere_text_buff = VigenereСipher.encrypt_vigenere(text_from_file, secret_key_tv)
                 encryptTable_text_buff = TableCipher.matrix_encrypt(encryptVigenere_text_buff, secret_key_tv)
                 print(encryptTable_text_buff)
-                
+                # funcCipherTable_and_CipherVigenere()
             
-            elif regimeCipTV == "2":
+            elif regimeEncr == "4":
                 decryptTable_text = TableCipher.matrix_decrypt(encryptTable_text_buff, secret_key_tv)
                 decryptVigenere_text = VigenereСipher.decrypt_vigenere(decryptTable_text, secret_key_tv)
                 print(decryptVigenere_text)
-
-
-
-def commandFuncEncryptTable_cipher():
-    """ 
-    Функція обробки команд, для табличного шифрування.
-    """
-    while(True):
-        regimeEncr = input("Оберіть тип табличного шифру: \
-            \n`t` - Табличний шифр \
-            \n`tv` - Табличний шифр з шифром Віженера\
-            \n`b` - Повернутись назад \n-> ")
-        if regimeEncr == "b" or regimeEncr == "B": break
-        
-        elif regimeEncr == "t":
-            print("Табличний шифр")
-            funcCipherTable()
             
-        elif regimeEncr == "tv":
-            print("Табличний шифр з шифром Віженера")
-            funcCipherTable_and_CipherVigenere()
-        
-        else: print("Невірна команда!")
+            else: print("Невірна команда!")
 # #
 
 
@@ -216,4 +186,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
+#
