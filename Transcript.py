@@ -165,5 +165,3 @@ def analyze_and_decrypt(ciphertext):
     plaintext = decrypt_vigenere(ciphertext, key)
     return plaintext
 # #
-
-

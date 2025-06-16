@@ -136,22 +136,22 @@ def commandFuncEncryptTable_cipher():
             
             elif regimeEncr == "1":
                 encrypted_text_table_buff = TableCipher.matrix_encrypt(text_from_file, secret_key_t)
-                print(encrypted_text_table_buff)
+                print(f"Зашифроване повідомлення: \n{encrypted_text_table_buff}")
             
             elif regimeEncr == "2":
                 decrypt_text_tabl = TableCipher.matrix_decrypt(encrypted_text_table_buff, secret_key_t)
-                print(decrypt_text_tabl)
+                print(f"Дешифроване повідомлення: \n{decrypt_text_tabl}")
                 
             elif regimeEncr == "3":
                 encryptVigenere_text_buff = VigenereСipher.encrypt_vigenere(text_from_file, secret_key_tv)
                 encryptTable_text_buff = TableCipher.matrix_encrypt(encryptVigenere_text_buff, secret_key_tv)
-                print(encryptTable_text_buff)
+                print(f"Зашифроване повідомлення: \n{encryptTable_text_buff}")
                 # funcCipherTable_and_CipherVigenere()
             
             elif regimeEncr == "4":
                 decryptTable_text = TableCipher.matrix_decrypt(encryptTable_text_buff, secret_key_tv)
                 decryptVigenere_text = VigenereСipher.decrypt_vigenere(decryptTable_text, secret_key_tv)
-                print(decryptVigenere_text)
+                print(f"Дешифроване повідомлення: \n{decryptVigenere_text}")
             
             else: print("Невірна команда!")
 # #
